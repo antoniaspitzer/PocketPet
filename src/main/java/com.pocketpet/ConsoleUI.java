@@ -9,6 +9,7 @@ public class ConsoleUI {
         System.out.println("Hunger: " + createBar(pet.getHunger()));
         System.out.println("Happiness: " + createBar(pet.getHappiness()));
         System.out.println("Energy: " + createBar(pet.getEnergy()));
+        System.out.println(pet.getMessage());
     }
 
 
