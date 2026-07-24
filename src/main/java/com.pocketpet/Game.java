@@ -3,18 +3,24 @@ import java.util.Scanner;
 public class Game {
 
     private Pet pet;
+    private ConsoleUI ui;
 
-    public Game(Pet pet) {
+    public Game(Pet pet, ConsoleUI ui) {
         this.pet = pet;
+        this.ui = ui;
     }
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
+            ui.showPetStatus(pet);
+
+            System.out.println("What do you wanna do?");
             System.out.println("1 Feed");
             System.out.println("2 Play");
             System.out.println("3 Sleep");
+            System.out.println("4 Exit");
 
             int choice = scanner.nextInt();
 
@@ -28,6 +34,11 @@ public class Game {
                 case 3:
                     pet.sleep();
                     break;
+                case 4:
+                    System.out.println("See you!!");
+                    return;
+                default:
+                    System.out.println("Invalid Number!");
             }
         }
     }
