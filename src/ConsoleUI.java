@@ -1,4 +1,12 @@
 public class ConsoleUI {
+    public static final String RESET = "\u001B[0m";
+
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String YELLOW = "\u001B[33m";
+    public static final String BLUE = "\u001B[34m";
+
+    public static final String RED_BACKGROUND = "\u001B[41m";
 
     public void showPetStatus(Pet pet) {
 
@@ -9,7 +17,7 @@ public class ConsoleUI {
         System.out.println("Hunger: " + createBar(pet.getHunger()));
         System.out.println("Happiness: " + createBar(pet.getHappiness()));
         System.out.println("Energy: " + createBar(pet.getEnergy()));
-        System.out.println(pet.getMessage());
+        System.out.println(ConsoleUI.RED_BACKGROUND + pet.getMessage() + ConsoleUI.RESET);
     }
 
 

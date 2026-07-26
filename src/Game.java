@@ -10,7 +10,7 @@ public class Game {
         this.ui = ui;
     }
 
-    public void start() {
+    public void start() { 
         Scanner scanner = new Scanner(System.in);
 
         while (true) {

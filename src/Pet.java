@@ -104,4 +104,8 @@ public class Pet {
             System.out.println(name + " is really sleepy...");
         }
 
+        TODO:
+        viele pets
+        unterschiedliche pets (gadse, hundi, hasi)
+        
 */
