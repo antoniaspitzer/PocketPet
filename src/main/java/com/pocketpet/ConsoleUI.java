@@ -16,9 +16,9 @@ public class ConsoleUI {
         System.out.println(pet.getName());
         System.out.println("------------------");
 
-        System.out.println("Hunger: " + createBar(pet.getHunger()));
+        System.out.println(ConsoleUI.BLUE + "Hunger: " + createBar(pet.getHunger()));
         System.out.println("Happiness: " + createBar(pet.getHappiness()));
-        System.out.println("Energy: " + createBar(pet.getEnergy()));
+        System.out.println("Energy: " + createBar(pet.getEnergy()) + ConsoleUI.RESET);
         System.out.println(ConsoleUI.RED_BACKGROUND + pet.getMessage() + ConsoleUI.RESET);
     }
 
