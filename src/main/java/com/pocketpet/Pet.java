@@ -1,4 +1,5 @@
-package main.java.com.pocketpet;
+package com.pocketpet;
+
 public class Pet {
 
     private String name;

@@ -1,4 +1,4 @@
-package main.java.com.pocketpet;
+package com.pocketpet;
 
 public class ConsoleUI {
     public static final String RESET = "\u001B[0m";

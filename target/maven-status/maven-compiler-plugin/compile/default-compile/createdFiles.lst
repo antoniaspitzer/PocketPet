@@ -1,4 +1,5 @@
-main\java\com\pocketpet\ConsoleUI.class
-main\java\com\pocketpet\Game.class
-main\java\com\pocketpet\Main.class
-main\java\com\pocketpet\Pet.class
+com\pocketpet\Main.class
+com\pocketpet\Pet.class
+com\pocketpet\PocketPetApp.class
+com\pocketpet\Game.class
+com\pocketpet\ConsoleUI.class
