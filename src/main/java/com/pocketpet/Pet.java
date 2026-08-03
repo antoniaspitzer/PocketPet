@@ -1,3 +1,4 @@
+package main.java.com.pocketpet;
 public class Pet {
 
     private String name;
@@ -31,7 +32,7 @@ public class Pet {
     public void play() {
         if (happiness >= MAX_VALUE) {
             System.out.println(name + " is already happy. They don't want to play!");
-            return;
+            return; 
         }
 
         happiness = Math.min(MAX_VALUE, happiness + 15);

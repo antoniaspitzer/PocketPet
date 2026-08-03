@@ -1,3 +1,4 @@
+package main.java.com.pocketpet;
 import java.util.Scanner;
 
 public class Main {
