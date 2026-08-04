@@ -1,12 +1,15 @@
-package com.pocketpet;
+package com.pocketpet.controller;
 import java.util.Scanner;
 
-public class Game {
+import com.pocketpet.model.Pet;
+import com.pocketpet.ui.ConsoleUI;
+
+public class GameController {
 
     private Pet pet;
     private ConsoleUI ui;
 
-    public Game(Pet pet, ConsoleUI ui) {
+    public GameController(Pet pet, ConsoleUI ui) {
         this.pet = pet;
         this.ui = ui;
     }

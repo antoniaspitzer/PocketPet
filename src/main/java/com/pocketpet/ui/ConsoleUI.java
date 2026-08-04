@@ -1,4 +1,6 @@
-package com.pocketpet;
+package com.pocketpet.ui;
+
+import com.pocketpet.model.Pet;
 
 public class ConsoleUI {
     public static final String RESET = "\u001B[0m";

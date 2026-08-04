@@ -1,4 +1,4 @@
-package com.pocketpet;
+package com.pocketpet.model;
 
 public class Pet {
 
