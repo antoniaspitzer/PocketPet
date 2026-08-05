@@ -63,36 +63,12 @@ public class PocketPetApp extends Application {
         // Progress Bars
         // --------------------------
 
-        ProgressBar hungerBar = new ProgressBar(0.7);
-        hungerBar.setPrefWidth(240);
-        hungerBar.setLayoutX(200);
-        hungerBar.setLayoutY(270);
+        PixelProgressBar hunger = new PixelProgressBar();
 
-        ProgressBar happinessBar = new ProgressBar(0.5);
-        happinessBar.setPrefWidth(240);
-        happinessBar.setLayoutX(200);
-        happinessBar.setLayoutY(330);
+        hunger.setValue(15);
 
-        ProgressBar energyBar = new ProgressBar(0.9);
-        energyBar.setPrefWidth(240);
-        energyBar.setLayoutX(200);
-        energyBar.setLayoutY(390);
-
-        // --------------------------
-        // Labels
-        // --------------------------
-
-        Label hungerLabel = new Label("Hunger");
-        hungerLabel.setLayoutX(110);
-        hungerLabel.setLayoutY(262);
-
-        Label happinessLabel = new Label("Happiness");
-        happinessLabel.setLayoutX(95);
-        happinessLabel.setLayoutY(322);
-
-        Label energyLabel = new Label("Energy");
-        energyLabel.setLayoutX(110);
-        energyLabel.setLayoutY(382);
+        hunger.setLayoutX(200);
+        hunger.setLayoutY(200);
 
         // --------------------------
         // Game Pane
@@ -104,14 +80,8 @@ public class PocketPetApp extends Application {
                 cat,
                 petName,
 
-                hungerLabel,
-                hungerBar,
+                hunger
 
-                happinessLabel,
-                happinessBar,
-
-                energyLabel,
-                energyBar
         );
 
         // --------------------------
