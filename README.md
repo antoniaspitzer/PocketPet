@@ -28,3 +28,7 @@ A small Java-based virtual pet simulation. Created to show you my basic Java ski
 - Inventory system
 - More Games (Mini Games?)
 - Custom Clothes for pets
+
+## Running
+
+run with 'mvn javafx:run'

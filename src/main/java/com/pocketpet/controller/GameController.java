@@ -1,49 +1,28 @@
 package com.pocketpet.controller;
-import java.util.Scanner;
 
 import com.pocketpet.model.Pet;
-import com.pocketpet.ui.ConsoleUI;
 
 public class GameController {
 
     private Pet pet;
-    private ConsoleUI ui;
 
-    public GameController(Pet pet, ConsoleUI ui) {
+    public GameController(Pet pet) {
         this.pet = pet;
-        this.ui = ui;
     }
 
-    public void start() { 
-        Scanner scanner = new Scanner(System.in);
+    public void feedPet() {
+        pet.feed();
+    }
 
-        while (true) {
-            ui.showPetStatus(pet);
+    public void playWithPet() {
+        pet.play();
+    }
 
-            System.out.println("What do you wanna do?");
-            System.out.println("1 Feed");
-            System.out.println("2 Play");
-            System.out.println("3 Sleep");
-            System.out.println("4 Exit");
+    public void putPetToSleep() {
+        pet.sleep();
+    }
 
-            int choice = scanner.nextInt();
-
-            switch (choice) {
-                case 1:
-                    pet.feed();
-                    break;
-                case 2:
-                    pet.play();
-                    break;
-                case 3:
-                    pet.sleep();
-                    break;
-                case 4:
-                    System.out.println("See you!!");
-                    return;
-                default:
-                    System.out.println("Invalid Number!");
-            }
-        }
+    public Pet getPet() {
+        return pet;
     }
 }
