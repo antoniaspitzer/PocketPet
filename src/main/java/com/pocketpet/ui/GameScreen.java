@@ -3,17 +3,14 @@ package com.pocketpet.ui;
 import com.pocketpet.controller.GameController;
 import com.pocketpet.model.Pet;
 
-import javafx.application.Application;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
-public class PocketPetApp extends Application {
+public class GameScreen extends StackPane {
 
     private PixelProgressBar hungerBar;
     private PixelProgressBar happinessBar;
@@ -23,9 +20,7 @@ public class PocketPetApp extends Application {
 
     private GameController controller;
 
-
-    @Override
-    public void start(Stage stage) {
+    public GameScreen() {
 
         // --------------------------
         // Create Pet + Controller
@@ -148,7 +143,6 @@ public class PocketPetApp extends Application {
                 """);
 
         messageLabel.setWrapText(true);
-
         messageLabel.setPrefWidth(440);
 
 
@@ -234,19 +228,9 @@ public class PocketPetApp extends Application {
         // Root
         // --------------------------
 
-        StackPane root = new StackPane(frame, game);
+        getChildren().addAll(frame, game);
 
-        root.setAlignment(Pos.CENTER);
-
-
-        Scene scene = new Scene(root, 640, 480);
-
-        stage.setTitle("PocketPet");
-        stage.setResizable(false);
-
-        stage.setScene(scene);
-
-        stage.show();
+        setAlignment(Pos.CENTER);
     }
 
 
@@ -267,10 +251,5 @@ public class PocketPetApp extends Application {
 
         // Update message
         messageLabel.setText(pet.getMessage());
-    }
-
-
-    public static void main(String[] args) {
-        launch();
     }
 }
