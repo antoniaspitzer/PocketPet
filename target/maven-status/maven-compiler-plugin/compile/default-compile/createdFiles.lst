@@ -1,10 +1,11 @@
 com\pocketpet\ui\StartScreen.class
-com\pocketpet\ui\PixelButton.class
 com\pocketpet\ui\PixelProgressBar.class
+com\pocketpet\ui\InventoryView.class
+com\pocketpet\ui\GameScreen.class
+com\pocketpet\ui\ChoosePetScreen.class
+com\pocketpet\ui\PixelButton.class
 com\pocketpet\ui\ConsoleUI.class
 com\pocketpet\controller\GameController.class
-com\pocketpet\ui\InventoryView.class
 com\pocketpet\util\SaveManager.class
 com\pocketpet\model\Pet.class
-com\pocketpet\ui\GameScreen.class
 com\pocketpet\PocketPetApp.class

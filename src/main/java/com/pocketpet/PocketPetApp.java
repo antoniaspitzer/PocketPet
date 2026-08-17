@@ -1,6 +1,7 @@
 package com.pocketpet;
 
 import com.pocketpet.ui.GameScreen;
+import com.pocketpet.ui.ChoosePetScreen;
 import com.pocketpet.ui.StartScreen;
 
 import javafx.application.Application;
@@ -32,10 +33,24 @@ public class PocketPetApp extends Application {
     private void showStartScreen() {
 
         StartScreen startScreen = new StartScreen(() -> {
-            showGameScreen();
+            showChoosePetScreen();
         });
 
         Scene scene = new Scene(startScreen, 640, 480);
+
+        stage.setScene(scene);
+    }
+
+    // -------------------------
+    // ChoosePetScreen.java
+    // ------------------------
+
+    private void showChoosePetScreen() {
+        ChoosePetScreen petScreen = new ChoosePetScreen(() -> {
+            showGameScreen();
+        });
+
+        Scene scene = new Scene(petScreen, 640, 480);
 
         stage.setScene(scene);
     }
