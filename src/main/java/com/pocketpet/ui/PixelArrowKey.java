@@ -17,9 +17,14 @@ public class PixelArrowKey extends Button {
             .toExternalForm()
     );
 
-    public PixelArrowKey() {
-        setPrefWidth(50);
-        setPrefHeight(50);
+    private String direction;
+
+    public PixelArrowKey(String direction) {
+        this.direction = direction;
+
+
+        setPrefWidth(48);
+        setPrefHeight(80);
 
                 // Normaler Button
         setStyle(
@@ -53,5 +58,20 @@ public class PixelArrowKey extends Button {
                 "-fx-text-fill: white;"
             );
         });
+
+        switch(direction) {
+            case "LEFT": 
+                break;
+            case "UP":
+                setRotate(90);
+                break;
+            case "RIGHT":
+                setScaleX(-1);
+                setScaleX(-1);
+                break;
+            case "DOWN":
+                setRotate(-90);
+                break;
+        }
     }
 }

@@ -46,36 +46,32 @@ public class ChoosePetScreen extends AnchorPane {
         cat.setLayoutX(265);
         cat.setLayoutY(120);
 
-        PixelArrowKey pixelArrowLeft = new PixelArrowKey();
-        pixelArrowLeft.setLayoutX(250);
-        pixelArrowLeft.setLayoutY(120);
-
-        PixelArrowKey pixelArrowUp = new PixelArrowKey();
-        pixelArrowLeft.setLayoutX(275);
-        pixelArrowLeft.setLayoutY(80);
-
-        PixelArrowKey pixelArrowRight = new PixelArrowKey();
-        pixelArrowLeft.setLayoutX(300);
-        pixelArrowLeft.setLayoutY(120);
-
-        PixelArrowKey pixelArrowDown = new PixelArrowKey();
-        pixelArrowLeft.setLayoutX(275);
-        pixelArrowLeft.setLayoutY(150);
-
-
         // --------------------------
-        // Title
+        // Arrow Buttons
         // --------------------------
 
-        Label title = new Label("POCKET PET");
+        PixelArrowKey pixelArrowLeft = new PixelArrowKey("LEFT");
 
-        title.setStyle("""
-                -fx-font-size: 32;
-                -fx-font-weight: bold;
-                """);
+        pixelArrowLeft.setLayoutX(180);
+        pixelArrowLeft.setLayoutY(160);
 
-        title.setLayoutX(230);
-        title.setLayoutY(50);
+
+        PixelArrowKey pixelArrowUp = new PixelArrowKey("UP");
+
+        pixelArrowUp.setLayoutX(300);
+        pixelArrowUp.setLayoutY(45);
+
+
+        PixelArrowKey pixelArrowRight = new PixelArrowKey("RIGHT");
+
+        pixelArrowRight.setLayoutX(420);
+        pixelArrowRight.setLayoutY(160);
+
+
+        PixelArrowKey pixelArrowDown = new PixelArrowKey("DOWN");
+
+        pixelArrowDown.setLayoutX(300);
+        pixelArrowDown.setLayoutY(265);
 
 
         // --------------------------
@@ -85,24 +81,10 @@ public class ChoosePetScreen extends AnchorPane {
         PixelButton startButton = new PixelButton("CHOOSE PET");
 
         startButton.setLayoutX(250);
-        startButton.setLayoutY(270);
+        startButton.setLayoutY(350);
 
         startButton.setOnAction(event -> {
             onStart.run();
-        });
-
-
-        // --------------------------
-        // Exit Button
-        // --------------------------
-
-        PixelButton exitButton = new PixelButton("EXIT");
-
-        exitButton.setLayoutX(250);
-        exitButton.setLayoutY(340);
-
-        exitButton.setOnAction(event -> {
-            System.exit(0);
         });
 
 
@@ -112,14 +94,12 @@ public class ChoosePetScreen extends AnchorPane {
 
         getChildren().addAll(
                 frame,
-                title,
                 cat,
                 pixelArrowLeft,
                 pixelArrowUp,
                 pixelArrowRight,
                 pixelArrowDown,
-                startButton,
-                exitButton
+                startButton
         );
     }
 }
