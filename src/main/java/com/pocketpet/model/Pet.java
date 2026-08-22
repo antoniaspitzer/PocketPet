@@ -9,6 +9,17 @@ public class Pet {
 
     private String message;
 
+    private enum PetType {
+        CAT,
+        BUNNY,
+        BEAR
+    }
+
+    public enum PetColor {
+        BROWN,
+        PINK
+    }
+
     private static final int MAX_VALUE = 100;
     private static final int MIN_VALUE = 0;
 

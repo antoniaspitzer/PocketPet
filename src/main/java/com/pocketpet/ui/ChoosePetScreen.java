@@ -32,7 +32,7 @@ public class ChoosePetScreen extends AnchorPane {
 
         Image catImage = new Image(
                 getClass()
-                        .getResource("/images/cat.png")
+                        .getResource("/images/cat/cat.png")
                         .toExternalForm()
         );
 
@@ -50,10 +50,19 @@ public class ChoosePetScreen extends AnchorPane {
         // Arrow Buttons
         // --------------------------
 
+        
+
+
+
+
         PixelArrowKey pixelArrowLeft = new PixelArrowKey("LEFT");
 
         pixelArrowLeft.setLayoutX(180);
         pixelArrowLeft.setLayoutY(160);
+
+        pixelArrowLeft.setOnAction(event -> {
+            
+        });
 
 
         PixelArrowKey pixelArrowUp = new PixelArrowKey("UP");

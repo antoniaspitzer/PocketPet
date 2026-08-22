@@ -54,7 +54,7 @@ public class GameScreen extends StackPane {
 
         Image catImage = new Image(
                 getClass()
-                        .getResource("/images/cat.png")
+                        .getResource("/images/cat/cat.png")
                         .toExternalForm()
         );
 
