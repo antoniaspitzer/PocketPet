@@ -45,7 +45,7 @@ public class PixelProgressBar extends StackPane {
 
 
         // Abstand vom Rahmen
-        bar.setTranslateX(16);
+        bar.setTranslateX(24);
         bar.setTranslateY(16);
 
 

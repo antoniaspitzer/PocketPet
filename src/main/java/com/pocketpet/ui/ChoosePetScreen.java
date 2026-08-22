@@ -46,6 +46,22 @@ public class ChoosePetScreen extends AnchorPane {
         cat.setLayoutX(265);
         cat.setLayoutY(120);
 
+        PixelArrowKey pixelArrowLeft = new PixelArrowKey();
+        pixelArrowLeft.setLayoutX(250);
+        pixelArrowLeft.setLayoutY(120);
+
+        PixelArrowKey pixelArrowUp = new PixelArrowKey();
+        pixelArrowLeft.setLayoutX(275);
+        pixelArrowLeft.setLayoutY(80);
+
+        PixelArrowKey pixelArrowRight = new PixelArrowKey();
+        pixelArrowLeft.setLayoutX(300);
+        pixelArrowLeft.setLayoutY(120);
+
+        PixelArrowKey pixelArrowDown = new PixelArrowKey();
+        pixelArrowLeft.setLayoutX(275);
+        pixelArrowLeft.setLayoutY(150);
+
 
         // --------------------------
         // Title
@@ -66,7 +82,7 @@ public class ChoosePetScreen extends AnchorPane {
         // Start Button
         // --------------------------
 
-        PixelButton startButton = new PixelButton("START");
+        PixelButton startButton = new PixelButton("CHOOSE PET");
 
         startButton.setLayoutX(250);
         startButton.setLayoutY(270);
@@ -98,6 +114,10 @@ public class ChoosePetScreen extends AnchorPane {
                 frame,
                 title,
                 cat,
+                pixelArrowLeft,
+                pixelArrowUp,
+                pixelArrowRight,
+                pixelArrowDown,
                 startButton,
                 exitButton
         );
