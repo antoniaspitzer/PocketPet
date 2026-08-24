@@ -23,7 +23,7 @@ public class GameScreen extends StackPane {
 
     private Pet pet;
 
-    public GameScreen(Pet pet) {
+    public GameScreen(Pet pet, Runnable onPlay) {
 
         // --------------------------
         // Create Pet + Controller
@@ -170,9 +170,8 @@ public class GameScreen extends StackPane {
 
         playButton.setOnAction(event -> {
 
-            controller.playWithPet();
-
-            updateUI();
+            onPlay.run();
+            
         });
 
 

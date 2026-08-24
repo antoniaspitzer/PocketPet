@@ -1,19 +1,20 @@
 package com.pocketpet;
 
-import com.pocketpet.ui.GameScreen;
-import com.pocketpet.ui.ChoosePetScreen;
-import com.pocketpet.ui.StartScreen;
-
 import com.pocketpet.model.Pet;
-import javafx.scene.layout.StackPane;
+import com.pocketpet.minigame.SnakeMiniGame;
+import com.pocketpet.ui.ChoosePetScreen;
+import com.pocketpet.ui.GameScreen;
+import com.pocketpet.ui.StartScreen;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class PocketPetApp extends Application {
 
     private Stage stage;
+
 
     @Override
     public void start(Stage stage) {
@@ -29,59 +30,120 @@ public class PocketPetApp extends Application {
     }
 
 
-    // --------------------------
+    // ==========================================================
     // Start Screen
-    // --------------------------
+    // ==========================================================
 
     private void showStartScreen() {
 
         StartScreen startScreen = new StartScreen(() -> {
+
             showChoosePetScreen();
+
         });
 
-        Scene scene = new Scene(startScreen, 640, 480);
+        Scene scene = new Scene(
+                startScreen,
+                640,
+                480
+        );
 
         stage.setScene(scene);
     }
 
-    // -------------------------
-    // ChoosePetScreen.java
-    // ------------------------
+
+    // ==========================================================
+    // Choose Pet Screen
+    // ==========================================================
 
     private void showChoosePetScreen() {
 
         Pet pet = new Pet("Momo");
 
-        ChoosePetScreen choosePetScreen = new ChoosePetScreen(
-                pet,
-                selectedPet -> {
-                    showGameScreen(selectedPet);
-                }
+        ChoosePetScreen choosePetScreen =
+                new ChoosePetScreen(
+                        pet,
+
+                        selectedPet -> {
+
+                            showGameScreen(selectedPet);
+
+                        }
+                );
+
+        Scene scene = new Scene(
+                choosePetScreen,
+                640,
+                480
         );
-
-        StackPane root = new StackPane(choosePetScreen);
-
-        Scene scene = new Scene(root, 640, 480);
 
         stage.setScene(scene);
     }
 
 
-    // --------------------------
+    // ==========================================================
     // Game Screen
-    // --------------------------
+    // ==========================================================
 
     private void showGameScreen(Pet pet) {
 
-        GameScreen gameScreen = new GameScreen(pet);
+        GameScreen gameScreen =
+                new GameScreen(
+                        pet,
 
-        Scene scene = new Scene(gameScreen, 640, 480);
+                        () -> {
+
+                            showSnakeMiniGame(pet);
+
+                        }
+                );
+
+        Scene scene = new Scene(
+                gameScreen,
+                640,
+                480
+        );
 
         stage.setScene(scene);
     }
 
 
+    // ==========================================================
+    // Snake Mini Game
+    // ==========================================================
+
+    private void showSnakeMiniGame(Pet pet) {
+
+        SnakeMiniGame snakeMiniGame =
+                new SnakeMiniGame(() -> {
+
+                    pet.setHappiness(
+                            Math.min(100, pet.getHappiness() + 15)
+                    );
+
+                    showGameScreen(pet);
+
+                });
+
+        Scene scene = new Scene(
+                snakeMiniGame,
+                640,
+                480
+        );
+
+        stage.setScene(scene);
+
+        // Wichtig für die Pfeiltasten!
+        snakeMiniGame.requestFocus();
+    }
+
+
+    // ==========================================================
+    // Main
+    // ==========================================================
+
     public static void main(String[] args) {
+
         launch(args);
     }
 }

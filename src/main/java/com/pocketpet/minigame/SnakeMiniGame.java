@@ -2,8 +2,11 @@ package com.pocketpet.minigame;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -16,23 +19,17 @@ import java.util.Random;
 
 public class SnakeMiniGame extends StackPane {
 
-    // --------------------------
-    // Settings
-    // --------------------------
-
-    private static final int BOARD_SIZE = 480;
-    private static final int TILE_SIZE = 24;
-
+    private static final int BOARD_WIDTH = 380;
+    private static final int BOARD_HEIGHT = 240;
+    private static final int TILE_SIZE = 20;
     private static final int MAX_SCORE = 5;
 
-    // --------------------------
-    // Snake
-    // --------------------------
+    private static final Color SNAKE_HEAD_COLOR = Color.web("#E88FB3");
+    private static final Color SNAKE_BODY_COLOR = Color.web("#F2A9C7");
+    private static final Color FOOD_COLOR = Color.web("#E85D8C");
 
     private class Tile {
-
-        int x;
-        int y;
+        int x, y;
 
         Tile(int x, int y) {
             this.x = x;
@@ -42,74 +39,92 @@ public class SnakeMiniGame extends StackPane {
 
     private Tile snakeHead;
     private ArrayList<Tile> snakeBody;
-
-    // --------------------------
-    // Food
-    // --------------------------
-
     private Tile food;
-    private Random random;
 
-    // --------------------------
-    // Game Logic
-    // --------------------------
+    private Random random;
+    private Timeline gameLoop;
 
     private int velocityX;
     private int velocityY;
+    private int score;
 
-    private int score = 0;
-
-    private Timeline gameLoop;
-
-    private boolean gameOver = false;
-
-    // --------------------------
-    // UI
-    // --------------------------
+    private boolean gameOver;
+    private boolean gameStarted;
 
     private Pane gameBoard;
     private Label scoreLabel;
+    private Label infoLabel;
 
-    // Wird ausgeführt, wenn das Minigame fertig ist
     private Runnable onGameFinished;
 
-
-    // ==========================================================
-    // Constructor
-    // ==========================================================
 
     public SnakeMiniGame(Runnable onGameFinished) {
 
         this.onGameFinished = onGameFinished;
 
-        setPrefSize(BOARD_SIZE, BOARD_SIZE);
+        setPrefSize(640, 480);
+        setFocusTraversable(true);
 
-        // --------------------------
-        // Game Board
-        // --------------------------
+        createUI();
+        initializeGame();
+        setupKeyboard();
+        startGameLoop();
 
+        Platform.runLater(this::requestFocus);
+    }
+
+
+    private void createUI() {
+
+        // Frame
+        Image frameImage = new Image(
+                getClass()
+                        .getResource("/images/frame.png")
+                        .toExternalForm()
+        );
+
+        ImageView frame = new ImageView(frameImage);
+        frame.setSmooth(false);
+        frame.setFitWidth(640);
+        frame.setFitHeight(480);
+
+
+        // Game board
         gameBoard = new Pane();
 
         gameBoard.setPrefSize(
-                BOARD_SIZE,
-                BOARD_SIZE
+                BOARD_WIDTH,
+                BOARD_HEIGHT
+        );
+
+        gameBoard.setMinSize(
+                BOARD_WIDTH,
+                BOARD_HEIGHT
+        );
+
+        gameBoard.setMaxSize(
+                BOARD_WIDTH,
+                BOARD_HEIGHT
         );
 
         gameBoard.setStyle(
-                "-fx-background-color: black;"
+                "-fx-background-color: #FFD6E7;" +
+                "-fx-border-color: #D96A99;" +
+                "-fx-border-width: 3px;"
         );
 
 
-        // --------------------------
         // Score
-        // --------------------------
-
         scoreLabel = new Label("0 / " + MAX_SCORE);
 
         scoreLabel.setStyle("""
-                -fx-text-fill: white;
-                -fx-font-size: 20px;
+                -fx-text-fill: #C94F82;
+                -fx-font-size: 22px;
                 -fx-font-weight: bold;
+                -fx-background-color: #FFEAF3;
+                -fx-padding: 5px 15px;
+                -fx-border-color: #D96A99;
+                -fx-border-width: 2px;
                 """);
 
         StackPane.setAlignment(
@@ -118,95 +133,70 @@ public class SnakeMiniGame extends StackPane {
         );
 
 
-        // --------------------------
-        // Add UI
-        // --------------------------
+        // Info
+        infoLabel = new Label("Use the arrow keys!");
 
-        getChildren().addAll(
-                gameBoard,
-                scoreLabel
+        infoLabel.setStyle("""
+                -fx-text-fill: #C94F82;
+                -fx-font-size: 14px;
+                -fx-font-weight: bold;
+                """);
+
+        StackPane.setAlignment(
+                infoLabel,
+                Pos.BOTTOM_CENTER
         );
 
 
-        // --------------------------
-        // Start Game
-        // --------------------------
-
-        initializeGame();
-
-        setupKeyboard();
-
-        startGameLoop();
-
-        requestFocus();
+        getChildren().addAll(
+                frame,
+                gameBoard,
+                scoreLabel,
+                infoLabel
+        );
     }
 
 
-    // ==========================================================
-    // Initialize Game
-    // ==========================================================
-
     private void initializeGame() {
 
-        snakeHead = new Tile(
-                10,
-                10
-        );
-
+        snakeHead = new Tile(12, 9);
         snakeBody = new ArrayList<>();
 
-        food = new Tile(
-                5,
-                5
-        );
-
+        food = new Tile(5, 5);
         random = new Random();
 
         velocityX = 0;
         velocityY = 0;
 
         score = 0;
-
         gameOver = false;
+        gameStarted = false;
 
         placeFood();
-
         updateScore();
-
         draw();
     }
 
-
-    // ==========================================================
-    // Game Loop
-    // ==========================================================
 
     private void startGameLoop() {
 
         gameLoop = new Timeline(
                 new KeyFrame(
-                        Duration.millis(100),
+                        Duration.millis(120),
                         event -> {
 
-                            move();
-
-                            draw();
-
+                            if (gameStarted) {
+                                move();
+                                draw();
+                            }
                         }
                 )
         );
 
-        gameLoop.setCycleCount(
-                Timeline.INDEFINITE
-        );
-
+        gameLoop.setCycleCount(Timeline.INDEFINITE);
         gameLoop.play();
     }
 
-
-    // ==========================================================
-    // Keyboard
-    // ==========================================================
 
     private void setupKeyboard() {
 
@@ -214,41 +204,35 @@ public class SnakeMiniGame extends StackPane {
 
             KeyCode key = event.getCode();
 
-
             if (key == KeyCode.UP && velocityY != 1) {
 
                 velocityX = 0;
                 velocityY = -1;
 
-            }
-
-            else if (key == KeyCode.DOWN && velocityY != -1) {
+            } else if (key == KeyCode.DOWN && velocityY != -1) {
 
                 velocityX = 0;
                 velocityY = 1;
 
-            }
-
-            else if (key == KeyCode.LEFT && velocityX != 1) {
+            } else if (key == KeyCode.LEFT && velocityX != 1) {
 
                 velocityX = -1;
                 velocityY = 0;
 
-            }
-
-            else if (key == KeyCode.RIGHT && velocityX != -1) {
+            } else if (key == KeyCode.RIGHT && velocityX != -1) {
 
                 velocityX = 1;
                 velocityY = 0;
 
+            } else {
+                return;
             }
+
+            gameStarted = true;
+            infoLabel.setText("");
         });
     }
 
-
-    // ==========================================================
-    // Move Snake
-    // ==========================================================
 
     private void move() {
 
@@ -256,130 +240,100 @@ public class SnakeMiniGame extends StackPane {
             return;
         }
 
-
-        // --------------------------
-        // Eat Food
-        // --------------------------
-
+        // Food eaten
         if (collision(snakeHead, food)) {
 
             snakeBody.add(
-                    new Tile(
-                            food.x,
-                            food.y
-                    )
+                    new Tile(food.x, food.y)
             );
 
             score++;
-
             updateScore();
 
-
-            // 5 Bälle erreicht
             if (score >= MAX_SCORE) {
-
                 finishGame();
-
                 return;
             }
-
 
             placeFood();
         }
 
 
-        // --------------------------
-        // Move Body
-        // --------------------------
-
+        // Move body
         for (int i = snakeBody.size() - 1; i >= 0; i--) {
 
-            Tile snakePart = snakeBody.get(i);
+            Tile part = snakeBody.get(i);
 
             if (i == 0) {
 
-                snakePart.x = snakeHead.x;
-                snakePart.y = snakeHead.y;
+                part.x = snakeHead.x;
+                part.y = snakeHead.y;
 
             } else {
 
-                Tile previousPart =
-                        snakeBody.get(i - 1);
+                Tile previous = snakeBody.get(i - 1);
 
-                snakePart.x = previousPart.x;
-                snakePart.y = previousPart.y;
+                part.x = previous.x;
+                part.y = previous.y;
             }
         }
 
 
-        // --------------------------
-        // Move Head
-        // --------------------------
-
+        // Move head
         snakeHead.x += velocityX;
         snakeHead.y += velocityY;
 
 
-        // --------------------------
-        // Collision with Body
-        // --------------------------
+        // Body collision
+        for (Tile part : snakeBody) {
 
-        for (Tile snakePart : snakeBody) {
-
-            if (collision(
-                    snakeHead,
-                    snakePart
-            )) {
+            if (collision(snakeHead, part)) {
 
                 gameOver = true;
-
                 stopGame();
+
+                infoLabel.setText("Oops! Try again!");
+
+                restartAfterDelay();
+
                 return;
             }
         }
 
 
-        // --------------------------
-        // Collision with Wall
-        // --------------------------
-
+        // Wall collision
         if (
                 snakeHead.x < 0 ||
-                snakeHead.x >= BOARD_SIZE / TILE_SIZE ||
+                snakeHead.x >= BOARD_WIDTH / TILE_SIZE ||
                 snakeHead.y < 0 ||
-                snakeHead.y >= BOARD_SIZE / TILE_SIZE
+                snakeHead.y >= BOARD_HEIGHT / TILE_SIZE
         ) {
 
             gameOver = true;
-
             stopGame();
+
+            infoLabel.setText("Oops! Try again!");
+
+            restartAfterDelay();
         }
     }
 
-
-    // ==========================================================
-    // Place Food
-    // ==========================================================
 
     private void placeFood() {
 
         do {
 
             food.x = random.nextInt(
-                    BOARD_SIZE / TILE_SIZE
+                    BOARD_WIDTH / TILE_SIZE
             );
 
             food.y = random.nextInt(
-                    BOARD_SIZE / TILE_SIZE
+                    BOARD_HEIGHT / TILE_SIZE
             );
 
         } while (isSnakePosition(food));
     }
 
-
-    // ==========================================================
-    // Check if Food is inside Snake
-    // ==========================================================
 
     private boolean isSnakePosition(Tile tile) {
 
@@ -398,66 +352,53 @@ public class SnakeMiniGame extends StackPane {
     }
 
 
-    // ==========================================================
-    // Collision
-    // ==========================================================
-
-    private boolean collision(
-            Tile tile1,
-            Tile tile2
-    ) {
+    private boolean collision(Tile tile1, Tile tile2) {
 
         return tile1.x == tile2.x &&
                 tile1.y == tile2.y;
     }
 
 
-    // ==========================================================
-    // Draw
-    // ==========================================================
-
     private void draw() {
 
         gameBoard.getChildren().clear();
 
 
-        // --------------------------
         // Food
-        // --------------------------
-
         Rectangle foodRect = new Rectangle(
-                TILE_SIZE,
-                TILE_SIZE
+                TILE_SIZE - 4,
+                TILE_SIZE - 4
         );
 
-        foodRect.setFill(Color.RED);
+        foodRect.setFill(FOOD_COLOR);
+        foodRect.setArcWidth(8);
+        foodRect.setArcHeight(8);
 
         foodRect.setX(
-                food.x * TILE_SIZE
+                food.x * TILE_SIZE + 2
         );
 
         foodRect.setY(
-                food.y * TILE_SIZE
+                food.y * TILE_SIZE + 2
         );
 
 
-        // --------------------------
-        // Snake Head
-        // --------------------------
-
+        // Snake head
         Rectangle headRect = new Rectangle(
-                TILE_SIZE,
-                TILE_SIZE
+                TILE_SIZE - 4,
+                TILE_SIZE - 4
         );
 
-        headRect.setFill(Color.LIMEGREEN);
+        headRect.setFill(SNAKE_HEAD_COLOR);
+        headRect.setArcWidth(6);
+        headRect.setArcHeight(6);
 
         headRect.setX(
-                snakeHead.x * TILE_SIZE
+                snakeHead.x * TILE_SIZE + 2
         );
 
         headRect.setY(
-                snakeHead.y * TILE_SIZE
+                snakeHead.y * TILE_SIZE + 2
         );
 
 
@@ -467,39 +408,30 @@ public class SnakeMiniGame extends StackPane {
         );
 
 
-        // --------------------------
-        // Snake Body
-        // --------------------------
-
-        for (Tile snakePart : snakeBody) {
+        // Snake body
+        for (Tile part : snakeBody) {
 
             Rectangle bodyRect = new Rectangle(
-                    TILE_SIZE,
-                    TILE_SIZE
+                    TILE_SIZE - 4,
+                    TILE_SIZE - 4
             );
 
-            bodyRect.setFill(
-                    Color.GREEN
-            );
+            bodyRect.setFill(SNAKE_BODY_COLOR);
+            bodyRect.setArcWidth(6);
+            bodyRect.setArcHeight(6);
 
             bodyRect.setX(
-                    snakePart.x * TILE_SIZE
+                    part.x * TILE_SIZE + 2
             );
 
             bodyRect.setY(
-                    snakePart.y * TILE_SIZE
+                    part.y * TILE_SIZE + 2
             );
 
-            gameBoard.getChildren().add(
-                    bodyRect
-            );
+            gameBoard.getChildren().add(bodyRect);
         }
     }
 
-
-    // ==========================================================
-    // Update Score
-    // ==========================================================
 
     private void updateScore() {
 
@@ -509,30 +441,59 @@ public class SnakeMiniGame extends StackPane {
     }
 
 
-    // ==========================================================
-    // Finish Game
-    // ==========================================================
-
     private void finishGame() {
 
         stopGame();
 
-        if (onGameFinished != null) {
+        gameOver = true;
 
+        if (onGameFinished != null) {
             onGameFinished.run();
         }
     }
 
 
-    // ==========================================================
-    // Stop Game
-    // ==========================================================
-
     private void stopGame() {
 
         if (gameLoop != null) {
-
             gameLoop.stop();
         }
+    }
+
+    private void restartAfterDelay() {
+
+        Timeline restartTimer = new Timeline(
+                new KeyFrame(
+                        Duration.seconds(1.5),
+                        event -> restartGame()
+                )
+        );
+
+        restartTimer.setCycleCount(1);
+        restartTimer.play();
+    }
+
+    private void restartGame() {
+
+        snakeHead = new Tile(12, 9);
+        snakeBody.clear();
+
+        velocityX = 0;
+        velocityY = 0;
+
+        score = 0;
+        gameOver = false;
+        gameStarted = false;
+
+        placeFood();
+        updateScore();
+
+        infoLabel.setText("Use the arrow keys!");
+
+        draw();
+
+        startGameLoop();
+
+        requestFocus();
     }
 }

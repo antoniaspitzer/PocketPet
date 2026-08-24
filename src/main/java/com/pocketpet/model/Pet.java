@@ -118,6 +118,10 @@ public class Pet {
     // SETTERS
     // --------------------------
 
+    public void setHappiness(int happiness) {
+        this.happiness = Math.max(MIN_VALUE, Math.min(MAX_VALUE, happiness));
+    }
+
     public void setType(PetType type) {
         this.type = type;
     }
