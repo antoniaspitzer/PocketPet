@@ -32,7 +32,7 @@ public class StartScreen extends AnchorPane {
 
         Image catImage = new Image(
                 getClass()
-                        .getResource("/images/cat/cat.png")
+                        .getResource("/images/pets/bunny/hasi-brown.png")
                         .toExternalForm()
         );
 

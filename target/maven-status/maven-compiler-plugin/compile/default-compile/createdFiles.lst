@@ -1,9 +1,10 @@
 com\pocketpet\ui\StartScreen.class
-com\pocketpet\model\Pet$PetColor.class
+com\pocketpet\model\PetColor.class
 com\pocketpet\ui\PixelProgressBar.class
+com\pocketpet\util\PetImageManager.class
 com\pocketpet\ui\InventoryView.class
+com\pocketpet\model\PetType.class
 com\pocketpet\ui\GameScreen.class
-com\pocketpet\model\Pet$PetType.class
 com\pocketpet\ui\PixelArrowKey.class
 com\pocketpet\ui\ChoosePetScreen.class
 com\pocketpet\ui\PixelButton.class

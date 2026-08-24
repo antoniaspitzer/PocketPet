@@ -2,6 +2,7 @@ package com.pocketpet.ui;
 
 import com.pocketpet.controller.GameController;
 import com.pocketpet.model.Pet;
+import com.pocketpet.util.PetImageManager;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -20,13 +21,13 @@ public class GameScreen extends StackPane {
 
     private GameController controller;
 
-    public GameScreen() {
+    private Pet pet;
+
+    public GameScreen(Pet pet) {
 
         // --------------------------
         // Create Pet + Controller
         // --------------------------
-
-        Pet pet = new Pet("Momo");
 
         controller = new GameController(pet);
 
@@ -49,24 +50,23 @@ public class GameScreen extends StackPane {
 
 
         // --------------------------
-        // Cat
+        // Pet
         // --------------------------
 
-        Image catImage = new Image(
-                getClass()
-                        .getResource("/images/cat/cat.png")
-                        .toExternalForm()
+        ImageView petImage = new ImageView(
+                PetImageManager.getPetImage(
+                        pet.getType(),
+                        pet.getColor()
+                )
         );
 
-        ImageView cat = new ImageView(catImage);
+        petImage.setSmooth(false);
 
-        cat.setSmooth(false);
+        petImage.setFitWidth(110);
+        petImage.setFitHeight(110);
 
-        cat.setFitWidth(110);
-        cat.setFitHeight(110);
-
-        cat.setLayoutX(265);
-        cat.setLayoutY(35);
+        petImage.setLayoutX(265);
+        petImage.setLayoutY(35);
 
 
         // --------------------------
@@ -204,7 +204,7 @@ public class GameScreen extends StackPane {
 
         game.getChildren().addAll(
 
-                cat,
+                petImage,
                 petName,
 
                 hungerLabel,
