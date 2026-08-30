@@ -12,4 +12,15 @@
 // bzw the pet/image should fall always 
 // the same (using a graph?)
 
-// there will be randomized 
+// there will be vertical 10 "blocks"
+// and there will be a random number
+// divided through 10 to get one of the
+// blocks not filled up, so the pet 
+// can get through it!
+
+// every zb 50 px there will be an
+// vertical block thing
+
+// for the game loop there will be some
+// kind of method so the "camera" will keep
+// continously move right
