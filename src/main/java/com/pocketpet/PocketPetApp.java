@@ -5,6 +5,7 @@ import com.pocketpet.minigame.SnakeMiniGame;
 import com.pocketpet.ui.ChoosePetScreen;
 import com.pocketpet.ui.GameScreen;
 import com.pocketpet.ui.StartScreen;
+import com.pocketpet.minigame.FlappyPetGame;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -91,11 +92,8 @@ public class PocketPetApp extends Application {
                 new GameScreen(
                         pet,
 
-                        () -> {
-
-                            showSnakeMiniGame(pet);
-
-                        }
+                        () -> {showSnakeMiniGame(pet);},
+                        () -> {showFlappyBirdGame(pet);}
                 );
 
         Scene scene = new Scene(
@@ -135,6 +133,35 @@ public class PocketPetApp extends Application {
 
         // Wichtig für die Pfeiltasten!
         snakeMiniGame.requestFocus();
+    }
+
+    // ==========================================================
+    // Flappy Bird Mini Game
+    // ==========================================================
+
+    private void showFlappyBirdGame(Pet pet) {
+
+        FlappyPetGame flappyPetGame =
+                new FlappyPetGame(() -> {
+
+                    pet.setHappiness(
+                            Math.min(100, pet.getHappiness() + 15)
+                    );
+
+                    showGameScreen(pet);
+
+                });
+
+        Scene scene = new Scene(
+                flappyPetGame,
+                640,
+                480
+        );
+
+        stage.setScene(scene);
+
+        // Wichtig für die Pfeiltasten!
+        flappyPetGame.requestFocus();
     }
 
 

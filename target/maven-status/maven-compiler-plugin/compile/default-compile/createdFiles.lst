@@ -1,3 +1,5 @@
+com\pocketpet\minigame\FlappyPetGame$Wall.class
+com\pocketpet\minigame\FlappyPetGame.class
 com\pocketpet\model\PetType.class
 com\pocketpet\ui\PixelArrowKey.class
 com\pocketpet\ui\ConsoleUI.class
@@ -13,5 +15,6 @@ com\pocketpet\ui\GameScreen.class
 com\pocketpet\ui\ChoosePetScreen.class
 com\pocketpet\ui\PixelButton.class
 com\pocketpet\util\SaveManager.class
+com\pocketpet\minigame\FlappyPetGame$Tile.class
 com\pocketpet\PocketPetApp.class
 com\pocketpet\minigame\SnakeMiniGame.class

@@ -11,6 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
+import java.util.Random;
+
 public class GameScreen extends StackPane {
 
     private PixelProgressBar hungerBar;
@@ -23,7 +25,7 @@ public class GameScreen extends StackPane {
 
     private Pet pet;
 
-    public GameScreen(Pet pet, Runnable onPlay) {
+    public GameScreen(Pet pet, Runnable onSnake, Runnable onFlappy) {
 
         // --------------------------
         // Create Pet + Controller
@@ -169,11 +171,12 @@ public class GameScreen extends StackPane {
         playButton.setLayoutY(400);
 
         playButton.setOnAction(event -> {
-
-            onPlay.run();
-            
+            if (Math.random() < 0.5) {
+                onSnake.run();
+            } else {
+                onFlappy.run();
+            }
         });
-
 
         PixelButton sleepButton = new PixelButton("Sleep");
 
