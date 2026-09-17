@@ -6,3 +6,9 @@
 // kategorien geben. also zB ("food", "hats",
 // "minigames") 
 
+// maybe eine klasse "hide category" und
+// dann die unterschiedlichen "screen parts"
+// aber weiss noch nicht wie man sowas für 
+// normal baut! 
+
+// vllt aus "Deko" kaufen? 
