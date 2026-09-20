@@ -4,4 +4,5 @@
 // be left out the rest should be able
 // to move! there will be numbers at furst
 // but lateronbi want to have a pic
-// of your pet 
+// of your pet that gets puzzled
+// and stuff! 
