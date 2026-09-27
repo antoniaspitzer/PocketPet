@@ -25,7 +25,7 @@ public class GameScreen extends StackPane {
 
     private Pet pet;
 
-    public GameScreen(Pet pet, Runnable onSnake, Runnable onFlappy) {
+    public GameScreen(Pet pet, Runnable onSnake, Runnable onFlappy, Runnable onFood) {
 
         // --------------------------
         // Create Pet + Controller
@@ -158,6 +158,7 @@ public class GameScreen extends StackPane {
         feedButton.setLayoutY(400);
 
         feedButton.setOnAction(event -> {
+            onFood.run();
 
             controller.feedPet();
 

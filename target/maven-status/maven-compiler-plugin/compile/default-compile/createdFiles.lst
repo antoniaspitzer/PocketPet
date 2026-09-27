@@ -15,6 +15,7 @@ com\pocketpet\ui\GameScreen.class
 com\pocketpet\ui\ChoosePetScreen.class
 com\pocketpet\ui\PixelButton.class
 com\pocketpet\util\SaveManager.class
+com\pocketpet\ui\FoodScreen.class
 com\pocketpet\minigame\FlappyPetGame$Tile.class
 com\pocketpet\PocketPetApp.class
 com\pocketpet\minigame\SnakeMiniGame.class

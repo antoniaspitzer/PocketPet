@@ -17,5 +17,5 @@ import java.util.Random;
 // On the top there should be your pet, on the bottom the menue
 
 public class FoodScreen extends StackPane {
-
+    
 }

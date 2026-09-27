@@ -93,11 +93,26 @@ public class PocketPetApp extends Application {
                         pet,
 
                         () -> {showSnakeMiniGame(pet);},
-                        () -> {showFlappyBirdGame(pet);}
+                        () -> {showFlappyBirdGame(pet);},
+                        () -> {showFoodScreen(pet);}
                 );
 
         Scene scene = new Scene(
                 gameScreen,
+                640,
+                480
+        );
+
+        stage.setScene(scene);
+    }
+
+    // ==========================================================
+    // Food Choice Menue
+    // ==========================================================
+
+    private void showFoodScreen(Pet pet) {
+
+        Scene scene = new Scene(
                 640,
                 480
         );

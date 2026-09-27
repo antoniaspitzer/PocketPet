@@ -1,5 +1,6 @@
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\controller\GameController.java
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\minigame\FlappyPetGame.java
+C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\minigame\PuzzleMiniGame.java
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\minigame\SnakeMiniGame.java
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\model\Pet.java
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\model\PetColor.java
@@ -7,11 +8,13 @@ C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocket
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\PocketPetApp.java
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\ui\ChoosePetScreen.java
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\ui\ConsoleUI.java
+C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\ui\FoodScreen.java
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\ui\GameScreen.java
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\ui\InventoryView.java
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\ui\PixelArrowKey.java
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\ui\PixelButton.java
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\ui\PixelProgressBar.java
+C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\ui\ShopScreen.java
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\ui\StartScreen.java
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\util\PetImageManager.java
 C:\Users\anton\Allgemein\Bewerbungen\Projekte\PocketPet\src\main\java\com\pocketpet\util\SaveManager.java
