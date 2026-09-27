@@ -6,11 +6,11 @@ import com.pocketpet.ui.ChoosePetScreen;
 import com.pocketpet.ui.GameScreen;
 import com.pocketpet.ui.StartScreen;
 import com.pocketpet.minigame.FlappyPetGame;
+import com.pocketpet.ui.FoodScreen;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 
 public class PocketPetApp extends Application {
 
@@ -112,7 +112,13 @@ public class PocketPetApp extends Application {
 
     private void showFoodScreen(Pet pet) {
 
+        FoodScreen foodScreen = 
+                new FoodScreen(
+                        pet
+                );
+
         Scene scene = new Scene(
+                foodScreen,
                 640,
                 480
         );
