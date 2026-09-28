@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.GridPane;
 
 import java.util.Random;
 
@@ -83,9 +84,27 @@ public class FoodScreen extends StackPane {
         petName.setLayoutY(150);
 
 
-
+        // --------------------------
+        // Menu for food
+        // --------------------------
         
+        GridPane foodMenu = new GridPane();
 
+        foodMenu.setHgap(20);
+        foodMenu.setVgap(20);
+
+        foodMenu.setAlignment(Pos.CENTER);
+
+        // Food Items
+
+        ImageView apple = createFood("/images/food/apple.png");
+        ImageView strawberry = createFood("/images/food/strawberry.png");
+        ImageView chicken = createFood("/images/food/chicken.png");
+
+        ImageView cake = createFood("/images/food/cake.png");
+        ImageView carrot = createFood("/images/food/carrot.png");
+        ImageView cookie = createFood("/images/food/cookie.png");
+   
 
 
         // --------------------------
