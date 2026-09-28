@@ -105,6 +105,15 @@ public class FoodScreen extends StackPane {
         ImageView carrot = createFood("/images/food/carrot.png");
         ImageView cookie = createFood("/images/food/cookie.png");
    
+        // Adding Food items to the gridpane
+
+        foodMenu.add(apple, 0, 0);
+        foodMenu.add(strawberry, 1, 0);
+        foodMenu.add(chicken, 2, 0);
+
+        foodMenu.add(cake, 0, 1);
+        foodMenu.add(carrot, 1, 1);
+        foodMenu.add(cookie, 2, 1);
 
 
         // --------------------------
@@ -116,7 +125,8 @@ public class FoodScreen extends StackPane {
         game.getChildren().addAll(
 
                 petImage,
-                petName
+                petName,
+                foodMenu
         );
 
 
@@ -128,4 +138,23 @@ public class FoodScreen extends StackPane {
 
         setAlignment(Pos.CENTER);
      }
+
+
+     private ImageView createFood(String path) {
+
+        Image image = new Image(
+                getClass()
+                        .getResource(path)
+                        .toExternalForm()
+        );
+
+        ImageView food = new ImageView(image);
+
+        food.setSmooth(false);
+
+        food.setFitWidth(50);
+        food.setFitHeight(50);
+
+        return food;
+    }
 }
