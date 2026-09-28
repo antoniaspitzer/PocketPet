@@ -114,7 +114,10 @@ public class PocketPetApp extends Application {
 
         FoodScreen foodScreen = 
                 new FoodScreen(
-                        pet
+                        pet,
+                        () -> {     
+                                showGameScreen(pet);
+                        }
                 );
 
         Scene scene = new Scene(

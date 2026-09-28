@@ -12,25 +12,27 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.GridPane;
 
-import java.util.Random;
 
-// This screen should be a menue where you can give the pet any food you want to give him/her.
-// On the top there should be your pet, on the bottom the menue
+// This screen should be a menu where you can give the pet any food you want to give him/her.
+// On the top there should be your pet, on the bottom the menu
 
 public class FoodScreen extends StackPane {
 
     private GameController controller;
-
     private Pet pet;
+    private Runnable onFoodSelected;
 
-     public FoodScreen(Pet pet) {
-        
+
+    public FoodScreen(Pet pet, Runnable onFoodSelected) {
+
+        this.pet = pet;
+        this.onFoodSelected = onFoodSelected;
+
         // --------------------------
         // Create Pet + Controller
         // --------------------------
 
         controller = new GameController(pet);
-
 
         // --------------------------
         // Background
@@ -47,7 +49,6 @@ public class FoodScreen extends StackPane {
         frame.setSmooth(false);
         frame.setFitWidth(640);
         frame.setFitHeight(480);
-
 
         // --------------------------
         // Pet
@@ -68,7 +69,6 @@ public class FoodScreen extends StackPane {
         petImage.setLayoutX(265);
         petImage.setLayoutY(35);
 
-
         // --------------------------
         // Pet Name
         // --------------------------
@@ -83,11 +83,10 @@ public class FoodScreen extends StackPane {
         petName.setLayoutX(290);
         petName.setLayoutY(150);
 
-
         // --------------------------
         // Menu for food
         // --------------------------
-        
+
         GridPane foodMenu = new GridPane();
 
         foodMenu.setHgap(20);
@@ -95,7 +94,12 @@ public class FoodScreen extends StackPane {
 
         foodMenu.setAlignment(Pos.CENTER);
 
+        foodMenu.setLayoutX(190);
+        foodMenu.setLayoutY(220);
+
+        // --------------------------
         // Food Items
+        // --------------------------
 
         ImageView apple = createFood("/images/food/apple.png");
         ImageView strawberry = createFood("/images/food/strawberry.png");
@@ -104,8 +108,10 @@ public class FoodScreen extends StackPane {
         ImageView cake = createFood("/images/food/cake.png");
         ImageView carrot = createFood("/images/food/carrot.png");
         ImageView cookie = createFood("/images/food/cookie.png");
-   
-        // Adding Food items to the gridpane
+
+        // --------------------------
+        // Adding Food items
+        // --------------------------
 
         foodMenu.add(apple, 0, 0);
         foodMenu.add(strawberry, 1, 0);
@@ -115,6 +121,40 @@ public class FoodScreen extends StackPane {
         foodMenu.add(carrot, 1, 1);
         foodMenu.add(cookie, 2, 1);
 
+        // --------------------------
+        // Click events
+        // --------------------------
+
+        apple.setOnMouseClicked(event -> {
+            System.out.println(pet.getName() + " ate the apple!");
+            onFoodSelected.run();
+        });
+
+        strawberry.setOnMouseClicked(event -> {
+            System.out.println(pet.getName() + " ate the strawberry!");
+            onFoodSelected.run();
+        });
+
+        chicken.setOnMouseClicked(event -> {
+            System.out.println(pet.getName() + " ate the chicken!");
+            onFoodSelected.run();
+        });
+
+        cake.setOnMouseClicked(event -> {
+            System.out.println(pet.getName() + " ate the cake!");
+            onFoodSelected.run();
+        });
+
+        carrot.setOnMouseClicked(event -> {
+            System.out.println(pet.getName() + " ate the carrot!");
+            onFoodSelected.run();
+        });
+
+        cookie.setOnMouseClicked(event -> {
+            System.out.println(pet.getName() + " ate the cookie!");
+            onFoodSelected.run();
+        });
+
 
         // --------------------------
         // Game Pane
@@ -123,7 +163,6 @@ public class FoodScreen extends StackPane {
         AnchorPane game = new AnchorPane();
 
         game.getChildren().addAll(
-
                 petImage,
                 petName,
                 foodMenu
@@ -137,10 +176,10 @@ public class FoodScreen extends StackPane {
         getChildren().addAll(frame, game);
 
         setAlignment(Pos.CENTER);
-     }
+    }
 
 
-     private ImageView createFood(String path) {
+    private ImageView createFood(String path) {
 
         Image image = new Image(
                 getClass()
