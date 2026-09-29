@@ -84,6 +84,22 @@ public class FoodScreen extends StackPane {
         petName.setLayoutY(150);
 
         // --------------------------
+        // Message
+        // --------------------------
+
+        messageLabel = new Label();
+
+        messageLabel.setLayoutX(100);
+        messageLabel.setLayoutY(340);
+
+        messageLabel.setStyle("""
+                -fx-font-size: 16;
+                """);
+
+        messageLabel.setWrapText(true);
+        messageLabel.setPrefWidth(440);
+
+        // --------------------------
         // Menu for food
         // --------------------------
 
@@ -165,6 +181,7 @@ public class FoodScreen extends StackPane {
         game.getChildren().addAll(
                 petImage,
                 petName,
+                messageLabel,
                 foodMenu
         );
 
