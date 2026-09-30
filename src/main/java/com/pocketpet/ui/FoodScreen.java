@@ -87,7 +87,7 @@ public class FoodScreen extends StackPane {
         // Message
         // --------------------------
 
-        messageLabel = new Label();
+        Label messageLabel = new Label();
 
         messageLabel.setLayoutX(100);
         messageLabel.setLayoutY(340);
