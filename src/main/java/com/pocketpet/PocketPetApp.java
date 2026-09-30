@@ -139,9 +139,7 @@ public class PocketPetApp extends Application {
         SnakeMiniGame snakeMiniGame =
                 new SnakeMiniGame(() -> {
 
-                    pet.setHappiness(
-                            Math.min(100, pet.getHappiness() + 15)
-                    );
+                    pet.play();
 
                     showGameScreen(pet);
 
@@ -168,9 +166,7 @@ public class PocketPetApp extends Application {
         FlappyPetGame flappyPetGame =
                 new FlappyPetGame(() -> {
 
-                    pet.setHappiness(
-                            Math.min(100, pet.getHappiness() + 15)
-                    );
+                    pet.play();
 
                     showGameScreen(pet);
 
