@@ -7,7 +7,6 @@ A small Java-based virtual pet simulation. Created to show you my basic Java ski
 - Feed your pet
 - Play games
 - Manage energy and happiness
-- Random events
 - Save progress (TODO)
 
 ## Technologies
@@ -18,8 +17,17 @@ A small Java-based virtual pet simulation. Created to show you my basic Java ski
 
 ## Screenshots
 
+First version (console version)
 ![alt text](image.png)
 ![alt text](image-1.png)
+
+Graphical Version with JavaFX
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
+![alt text](image-5.png)
+![alt text](image-6.png)
+
 
 ## Future Improvements
 
