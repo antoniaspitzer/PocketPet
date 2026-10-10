@@ -33,9 +33,12 @@ Graphical Version with JavaFX
 
 - GUI with JavaFX
 - Multiple pets
+- Multiple colors of cats
 - Inventory system
-- More Games (Mini Games?)
+- More Mini Games
 - Custom Clothes for pets
+- Different Food
+- Shop system
 
 ## Running
 
