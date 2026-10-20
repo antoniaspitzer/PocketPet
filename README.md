@@ -32,8 +32,6 @@ Graphical Version with JavaFX
 ## Future Improvements
 
 - GUI with JavaFX
-- Multiple pets
-- Multiple colors of cats
 - Inventory system
 - More Mini Games
 - Custom Clothes for pets
